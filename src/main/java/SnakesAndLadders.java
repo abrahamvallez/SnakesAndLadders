@@ -1,8 +1,8 @@
 
-import domain.Board;
 import domain.Dice;
 import domain.Game;
 import domain.Player;
+import domain.Board.SnakesAndLaddersBoard;
 import ui.PromptPrinter;
 
 import java.util.ArrayList;
@@ -48,7 +48,7 @@ class SnakesAndLadders {
   static private Game createGame(int num) {
     List<Player> players = createPlayers(num);
     Dice dice = new Dice();
-    Board board = new Board(100);
+    SnakesAndLaddersBoard board = new SnakesAndLaddersBoard();
 
     return new Game(board, players, dice);  
   }

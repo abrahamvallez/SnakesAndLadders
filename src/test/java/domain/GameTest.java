@@ -8,6 +8,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import domain.Board.SnakesAndLaddersBoard;
+import domain.Board.SnakesAndLaddersBoardMock;
+
 public class GameTest {
   private Game game;
   private List<Player> players;
@@ -15,7 +18,7 @@ public class GameTest {
 
   @BeforeEach
   public void setUp() {
-    Board board = new Board(100);
+    SnakesAndLaddersBoard board = new SnakesAndLaddersBoardMock();
     this.players = new ArrayList<Player>();
     this.players.add(new Player());
     this.players.add(new Player());
@@ -31,21 +34,41 @@ public class GameTest {
 
   @Test
   public void shouldMovePlayerToNewPositionWhenMovePlayer() {
-    Mockito.when(this.dice.roll()).thenReturn(3);
+    Mockito.when(this.dice.roll()).thenReturn(2);
     this.game.start();
+    this.game.movePlayer(this.players.get(0));
+
+    assertEquals(3, this.players.get(0).getPosition());
+  }
+
+  @Test
+  public void shouldMovePlayerToNewPositionWhenMovePlayerTwice() {
+    Mockito.when(this.dice.roll()).thenReturn(1, 2);
+    this.game.start();
+    this.game.movePlayer(this.players.get(0));
     this.game.movePlayer(this.players.get(0));
 
     assertEquals(4, this.players.get(0).getPosition());
   }
 
   @Test
-  public void shouldMovePlayerToNewPositionWhenMovePlayerTwice() {
-    Mockito.when(this.dice.roll()).thenReturn(3, 4);
+  public void shouldMovePlayerToCorrectPositionWhenIsInLadderSquare() {
+    Mockito.when(this.dice.roll()).thenReturn(4);
+    this.game.start();
+    this.game.movePlayer(this.players.get(0));
+
+    assertEquals(15, this.players.get(0).getPosition());
+  } 
+
+  @Test
+  public void shouldMovePlayerToCorrectPositionWhenIsInSnakeSquare() {
+    Mockito.when(this.dice.roll()).thenReturn(5, 4);
     this.game.start();
     this.game.movePlayer(this.players.get(0));
     this.game.movePlayer(this.players.get(0));
 
-    assertEquals(8, this.players.get(0).getPosition());
+
+    assertEquals(5, this.players.get(0).getPosition());
   }
 
   @Test
