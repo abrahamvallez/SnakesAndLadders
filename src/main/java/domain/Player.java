@@ -1,7 +1,8 @@
+package domain;
 public class Player {
   private int position;
 
-  Player() {
+  public Player() {
     this.position = 0;
   }
 
