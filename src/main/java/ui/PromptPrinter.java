@@ -1,5 +1,9 @@
 package ui;
+import java.util.List;
+
 import domain.Player;
+import domain.Board.SnakesAndLaddersBoard;
+import domain.Board.Square.Square;
 import ui.Colour.Colour;
 
 public class PromptPrinter {
@@ -24,5 +28,8 @@ public class PromptPrinter {
   public void printWinner(Player winner) {
     System.out.println("There is a winner!: ");
     System.out.println();
+  }
+
+  public void printBoardWithPlayers(SnakesAndLaddersBoard board, List<Player> players) {
   }
 }

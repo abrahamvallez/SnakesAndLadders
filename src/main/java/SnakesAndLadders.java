@@ -29,9 +29,9 @@ class SnakesAndLadders {
     List<Player>players;
     players = game.getPlayers();
     int turn = 0;
-    while (game.hasWinner() != null) {
+    while (game.hasWinner() == null) {
       game.movePlayer(players.get(turn));
-      //TODO: print board
+      promptPrinter.printBoardWithPlayers(game.getBoard(), players);
       turn = switchTurn(players, turn);
     }
   }

@@ -53,6 +53,10 @@ public class Game {
     return this.winner;
   }
 
+  public SnakesAndLaddersBoard getBoard() {
+    return this.board;
+  }
+
   private boolean isWinPosition(int newPosition) {
     return this.board.isOnEnd(newPosition);
   }
